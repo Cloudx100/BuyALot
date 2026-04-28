@@ -1,0 +1,14 @@
+## Interface: 120005
+## Title: BuyALot
+## Notes: Bulk-buy from vendors. Shift-click an item to choose quantity. | Массовая покупка у вендора через shift-click.
+## Version: 0.1.0
+## SavedVariables: BuyALotDB
+## IconTexture: Interface\Icons\INV_Misc_Coin_01
+
+Locale.lua
+Core.lua
+Data.lua
+Themes\ThemeManager.lua
+UI\Animations.lua
+UI\UI.lua
+UI\Settings.lua
