@@ -12,3 +12,9 @@ Themes\ThemeManager.lua
 UI\Animations.lua
 UI\UI.lua
 UI\Settings.lua
+
+# --- Feature modules (delete block to disable) ---
+Modules\VendorBulk\Locale.lua
+Modules\VendorBulk\VendorBulk.lua
+Modules\VendorBulk\Frame.lua
+Modules\VendorBulk\MerchantHook.lua
