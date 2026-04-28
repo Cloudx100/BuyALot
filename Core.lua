@@ -55,43 +55,6 @@ function BuyALot:Call(method, ...)
             if entry.kind == kind and type(entry.mod[method]) == "function" then
                 local ok, err = pcall(entry.mod[method], entry.mod, ...)
                 if not ok then geterrorhandler()(err) end
-            end
-        end
-    end
-end
-
--------------------------------------------------------------------------------
--- WoW event bus with multi-subscriber dispatch (pcall-isolated).
--------------------------------------------------------------------------------
-local eventFrame    = CreateFrame("Frame")
-local eventHandlers = {}  -- event -> { fn, ... }
-
-function BuyALot:RegisterEvent(event, callback)
-    if not eventHandlers[event] then
-        eventHandlers[event] = {}
-        eventFrame:RegisterEvent(event)
-    end
-    table.insert(eventHandlers[event], callback)
-end
-
-function BuyALot:UnregisterEvent(event)
-    eventHandlers[event] = nil
-    eventFrame:UnregisterEvent(event)
-end
-
-eventFrame:SetScript("OnEvent", function(_, event, ...)
-    local list = eventHandlers[event]
-    if not list then return end
-    for _, callback in ipairs(list) do
-        local ok, err = pcall(callback, event, ...)
-        if not ok then geterrorhandler()(err) end
-    end
-end)
-
--------------------------------------------------------------------------------
--- Internal pub/sub for cross-module messages.
--------------------------------------------------------------------------------
-local subscribers = {}  -- name -> { fn, ... }
 
 BuyALot.Events = {}
 
